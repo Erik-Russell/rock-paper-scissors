@@ -81,47 +81,10 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-// a game will be five rounds
-function playGame() {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
 
-    playRound(humanSelection, computerSelection);
-    //score after 1 round:
-    console.log("Human:Computer")
-    console.log(humanScore + ":" + computerScore)
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
 
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-    //score after 2 round:
-    console.log("Human:Computer")
-    console.log(humanScore + ":" + computerScore)
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-    //score after 3 round:
-    console.log("Human:Computer")
-    console.log(humanScore + ":" + computerScore)
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-    //score after 4 round:
-    console.log("Human:Computer")
-    console.log(humanScore + ":" + computerScore)
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-    //score after 5 round:
-    console.log("Human:Computer")
-    console.log(humanScore + ":" + computerScore)
-}
-
-playGame();
+playRound(humanSelection, computerSelection);
+console.log("Human:Computer")
+console.log(humanScore + ":" + computerScore)
