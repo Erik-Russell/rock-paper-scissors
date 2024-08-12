@@ -1,9 +1,32 @@
-// choose computers choice
-
-// create string for choice
 let computerChoice = '';
+let humanChoice = '';
+let humanScore = 0;
+let computerScore = 0;
+let counterTie = 0;
 
-// declare func
+const rockButton = document.querySelector('#rockButton');
+rockButton.addEventListener("click", () => {
+    humanChoice = 'Rock';
+    let computerSelection = getComputerChoice();
+    playRound(humanChoice, computerSelection)
+});
+
+const paperButton = document.querySelector('#paperButton');
+paperButton.addEventListener("click", () => {
+    humanChoice = 'Paper';
+    let computerSelection = getComputerChoice();
+    playRound(humanChoice, computerSelection)
+});
+
+const scissorsButton = document.querySelector('#scissorsButton');
+scissorsButton.addEventListener("click", () => {
+    humanChoice = 'Scissors';
+    let computerSelection = getComputerChoice();
+    playRound(humanChoice, computerSelection)
+});
+
+const scorecard = document.querySelector(".scorecard");
+
 function getComputerChoice() {
     // generate random number 0, 1, or 2
     let randomNumber = Math.floor(Math.random() * 3);
@@ -24,67 +47,66 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-// take human choice
-
-// create string for choice
-let humanChoice = '';
-
-// declare function to take human input for choice
-function getHumanChoice() {
-    // prompt human for answer
-    humanChoice = prompt("Enter your choice: ", "Rock, Paper, or Scissors");
-    // test output
-    console.log("Human chooses: " + humanChoice);
-    // return string
-    return humanChoice;
+function humanWinsRound() {
+    humanScore += 1;
+    const roundWinner = document.createElement("div");
+    roundWinner.classList.add("content");
+    roundWinner.textContent = `Human: ${humanScore} --- Computer: ${computerScore}`;
+    scorecard.appendChild(roundWinner);
+    if (humanScore === 5) {
+        roundWinner.textContent = "****  Human wins!  ****";
+    };
+    scorecard.appendChild(roundWinner);
 }
 
-// declare player score variables
-let humanScore = 0;
-let computerScore = 0;
+function computerWinsRound() {
+    computerScore += 1;
+    const roundWinner = document.createElement("div");
+    roundWinner.classList.add("content");
+    roundWinner.textContent = `Human: ${humanScore} --- Computer: ${computerScore}`;
+    scorecard.appendChild(roundWinner);
+    if (computerScore === 5) {
+        roundWinner.textContent = "****  Computer wins!  ****";
+    };
+    scorecard.appendChild(roundWinner);
+}
+
+function tiedRound() {
+    counterTie += 1;
+    const roundTied = document.createElement("div");
+    roundTied.classList.add("content");
+    roundTied.textContent = "  ---  TIE ROUND  ---   ";
+    scorecard.appendChild(roundTied);
+}
 
 // create function to play a single round
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === 'Rock') {
         if (computerChoice === 'Scissors') {
-            console.log("human wins")
-            humanScore = humanScore + 1;
+            humanWinsRound();
         } else if (computerChoice === 'Paper') {
-            console.log("computer wins")
-            computerScore = computerScore + 1;
+            computerWinsRound();
         } else {
-            console.log("it is a tie");
+            tiedRound();
         }
     }
     if (humanChoice === 'Paper') {
         if (computerChoice === 'Rock') {
-            console.log("human wins")
-            humanScore = humanScore + 1;
+            humanWinsRound();
         } else if (computerChoice === 'Scissors') {
-            console.log("computer wins")
-            computerScore = computerScore + 1;
+            computerWinsRound();
         } else {
-            console.log("it is a tie");
+            tiedRound();
         }
     }
     if (humanChoice === 'Scissors') {
         if (computerChoice === 'Paper') {
-            console.log("human wins")
-            humanScore = humanScore + 1;
+            humanWinsRound();
         } else if (computerChoice === 'Rock') {
-            console.log("computer wins")
-            computerScore = computerScore + 1;
+            computerWinsRound();
         } else {
-            console.log("it is a tie");
+            tiedRound();
         }
     }
 }
 
-
-
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
-console.log("Human:Computer")
-console.log(humanScore + ":" + computerScore)
